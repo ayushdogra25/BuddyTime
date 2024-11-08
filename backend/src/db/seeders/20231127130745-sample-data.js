@@ -19,7 +19,7 @@ const ActivitiesData = [
   {
     name: 'Math Quiz',
 
-    type: 'offline',
+    type: 'educational',
 
     // type code here for "relation_many" field
 
@@ -29,26 +29,6 @@ const ActivitiesData = [
   {
     name: 'Outdoor Play',
 
-    type: 'social',
-
-    // type code here for "relation_many" field
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    name: 'Science Experiment',
-
-    type: 'educational',
-
-    // type code here for "relation_many" field
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    name: 'Drawing Session',
-
     type: 'offline',
 
     // type code here for "relation_many" field
@@ -57,7 +37,7 @@ const ActivitiesData = [
   },
 
   {
-    name: 'Group Study',
+    name: 'Science Experiment',
 
     type: 'social',
 
@@ -94,26 +74,6 @@ const ChatsData = [
     message: 'History review starts soon.',
 
     timestamp: new Date('2023-10-01T11:00:00Z'),
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    message: 'Art class is about to begin.',
-
-    timestamp: new Date('2023-10-01T13:00:00Z'),
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    message: 'Music practice at 4 PM.',
-
-    timestamp: new Date('2023-10-01T16:00:00Z'),
 
     // type code here for "relation_one" field
   },
@@ -155,30 +115,6 @@ const DashboardsData = [
 
     // type code here for "relation_one" field
   },
-
-  {
-    // type code here for "relation_one" field
-
-    schedule: 'Art class at 1 PM',
-
-    mood_check_in: 'Creative',
-
-    goal_tracker: 'Draw 2 sketches',
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    schedule: 'Music practice at 4 PM',
-
-    mood_check_in: 'Relaxed',
-
-    goal_tracker: 'Learn 2 songs',
-
-    // type code here for "relation_one" field
-  },
 ];
 
 const FamiliesData = [
@@ -200,22 +136,6 @@ const FamiliesData = [
 
   {
     name: 'Brown Family',
-
-    // type code here for "relation_many" field
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    name: 'Johnson Family',
-
-    // type code here for "relation_many" field
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    name: 'Williams Family',
 
     // type code here for "relation_many" field
 
@@ -253,26 +173,6 @@ const NotificationsData = [
 
     // type code here for "relation_one" field
   },
-
-  {
-    // type code here for "relation_one" field
-
-    content: 'Reminder: Art class at 1 PM',
-
-    sent_at: new Date('2023-10-01T21:00:00Z'),
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    content: 'Music practice session completed.',
-
-    sent_at: new Date('2023-10-01T22:00:00Z'),
-
-    // type code here for "relation_one" field
-  },
 ];
 
 const ScreenTimeAnalysesData = [
@@ -305,47 +205,19 @@ const ScreenTimeAnalysesData = [
 
     // type code here for "relation_one" field
   },
-
-  {
-    // type code here for "relation_one" field
-
-    usage_hours: 4,
-
-    recommendations: 'Limit screen time to 3 hours',
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    usage_hours: 2,
-
-    recommendations: 'Incorporate more reading time',
-
-    // type code here for "relation_one" field
-  },
 ];
 
 const FamilyData = [
   {
-    name: 'Ernst Mayr',
+    name: 'George Gaylord Simpson',
   },
 
   {
-    name: 'Albert Einstein',
+    name: 'Linus Pauling',
   },
 
   {
-    name: 'Theodosius Dobzhansky',
-  },
-
-  {
-    name: 'Lucretius',
-  },
-
-  {
-    name: 'William Bayliss',
+    name: 'Max von Laue',
   },
 ];
 
@@ -384,28 +256,6 @@ async function associateUserWithFamily() {
   if (User2?.setFamily) {
     await User2.setFamily(relatedFamily2);
   }
-
-  const relatedFamily3 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const User3 = await Users.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (User3?.setFamily) {
-    await User3.setFamily(relatedFamily3);
-  }
-
-  const relatedFamily4 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const User4 = await Users.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (User4?.setFamily) {
-    await User4.setFamily(relatedFamily4);
-  }
 }
 
 // Similar logic for "relation_many"
@@ -443,28 +293,6 @@ async function associateActivityWithFamily() {
   if (Activity2?.setFamily) {
     await Activity2.setFamily(relatedFamily2);
   }
-
-  const relatedFamily3 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Activity3 = await Activities.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Activity3?.setFamily) {
-    await Activity3.setFamily(relatedFamily3);
-  }
-
-  const relatedFamily4 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Activity4 = await Activities.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Activity4?.setFamily) {
-    await Activity4.setFamily(relatedFamily4);
-  }
 }
 
 async function associateChatWithUser() {
@@ -499,28 +327,6 @@ async function associateChatWithUser() {
   });
   if (Chat2?.setUser) {
     await Chat2.setUser(relatedUser2);
-  }
-
-  const relatedUser3 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Chat3 = await Chats.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Chat3?.setUser) {
-    await Chat3.setUser(relatedUser3);
-  }
-
-  const relatedUser4 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Chat4 = await Chats.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Chat4?.setUser) {
-    await Chat4.setUser(relatedUser4);
   }
 }
 
@@ -557,28 +363,6 @@ async function associateChatWithFamily() {
   if (Chat2?.setFamily) {
     await Chat2.setFamily(relatedFamily2);
   }
-
-  const relatedFamily3 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Chat3 = await Chats.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Chat3?.setFamily) {
-    await Chat3.setFamily(relatedFamily3);
-  }
-
-  const relatedFamily4 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Chat4 = await Chats.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Chat4?.setFamily) {
-    await Chat4.setFamily(relatedFamily4);
-  }
 }
 
 async function associateDashboardWithUser() {
@@ -614,28 +398,6 @@ async function associateDashboardWithUser() {
   if (Dashboard2?.setUser) {
     await Dashboard2.setUser(relatedUser2);
   }
-
-  const relatedUser3 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Dashboard3 = await Dashboards.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Dashboard3?.setUser) {
-    await Dashboard3.setUser(relatedUser3);
-  }
-
-  const relatedUser4 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Dashboard4 = await Dashboards.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Dashboard4?.setUser) {
-    await Dashboard4.setUser(relatedUser4);
-  }
 }
 
 async function associateDashboardWithFamily() {
@@ -670,28 +432,6 @@ async function associateDashboardWithFamily() {
   });
   if (Dashboard2?.setFamily) {
     await Dashboard2.setFamily(relatedFamily2);
-  }
-
-  const relatedFamily3 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Dashboard3 = await Dashboards.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Dashboard3?.setFamily) {
-    await Dashboard3.setFamily(relatedFamily3);
-  }
-
-  const relatedFamily4 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Dashboard4 = await Dashboards.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Dashboard4?.setFamily) {
-    await Dashboard4.setFamily(relatedFamily4);
   }
 }
 
@@ -730,28 +470,6 @@ async function associateFamilyWithFamily() {
   if (Family2?.setFamily) {
     await Family2.setFamily(relatedFamily2);
   }
-
-  const relatedFamily3 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Family3 = await Families.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Family3?.setFamily) {
-    await Family3.setFamily(relatedFamily3);
-  }
-
-  const relatedFamily4 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Family4 = await Families.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Family4?.setFamily) {
-    await Family4.setFamily(relatedFamily4);
-  }
 }
 
 async function associateNotificationWithUser() {
@@ -786,28 +504,6 @@ async function associateNotificationWithUser() {
   });
   if (Notification2?.setUser) {
     await Notification2.setUser(relatedUser2);
-  }
-
-  const relatedUser3 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Notification3 = await Notifications.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Notification3?.setUser) {
-    await Notification3.setUser(relatedUser3);
-  }
-
-  const relatedUser4 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Notification4 = await Notifications.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Notification4?.setUser) {
-    await Notification4.setUser(relatedUser4);
   }
 }
 
@@ -844,28 +540,6 @@ async function associateNotificationWithFamily() {
   if (Notification2?.setFamily) {
     await Notification2.setFamily(relatedFamily2);
   }
-
-  const relatedFamily3 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Notification3 = await Notifications.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Notification3?.setFamily) {
-    await Notification3.setFamily(relatedFamily3);
-  }
-
-  const relatedFamily4 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const Notification4 = await Notifications.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Notification4?.setFamily) {
-    await Notification4.setFamily(relatedFamily4);
-  }
 }
 
 async function associateScreenTimeAnalysisWithUser() {
@@ -901,28 +575,6 @@ async function associateScreenTimeAnalysisWithUser() {
   if (ScreenTimeAnalysis2?.setUser) {
     await ScreenTimeAnalysis2.setUser(relatedUser2);
   }
-
-  const relatedUser3 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const ScreenTimeAnalysis3 = await ScreenTimeAnalyses.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (ScreenTimeAnalysis3?.setUser) {
-    await ScreenTimeAnalysis3.setUser(relatedUser3);
-  }
-
-  const relatedUser4 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const ScreenTimeAnalysis4 = await ScreenTimeAnalyses.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (ScreenTimeAnalysis4?.setUser) {
-    await ScreenTimeAnalysis4.setUser(relatedUser4);
-  }
 }
 
 async function associateScreenTimeAnalysisWithFamily() {
@@ -957,28 +609,6 @@ async function associateScreenTimeAnalysisWithFamily() {
   });
   if (ScreenTimeAnalysis2?.setFamily) {
     await ScreenTimeAnalysis2.setFamily(relatedFamily2);
-  }
-
-  const relatedFamily3 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const ScreenTimeAnalysis3 = await ScreenTimeAnalyses.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (ScreenTimeAnalysis3?.setFamily) {
-    await ScreenTimeAnalysis3.setFamily(relatedFamily3);
-  }
-
-  const relatedFamily4 = await Family.findOne({
-    offset: Math.floor(Math.random() * (await Family.count())),
-  });
-  const ScreenTimeAnalysis4 = await ScreenTimeAnalyses.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (ScreenTimeAnalysis4?.setFamily) {
-    await ScreenTimeAnalysis4.setFamily(relatedFamily4);
   }
 }
 

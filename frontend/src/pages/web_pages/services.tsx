@@ -224,7 +224,7 @@ export default function WebSite() {
 
         <PricingSection
           projectName={'BuddyTime'}
-          withBg={1}
+          withBg={0}
           features={pricing_features}
           description={description}
         />
@@ -232,7 +232,7 @@ export default function WebSite() {
         <FeaturesSection
           projectName={'BuddyTime'}
           image={['Kids enjoying BuddyTime features']}
-          withBg={0}
+          withBg={1}
           features={features_points}
           mainText={`Explore ${projectName} Core Features`}
           subTitle={`Discover the innovative features of ${projectName} that help balance screen time with learning and play for children.`}
