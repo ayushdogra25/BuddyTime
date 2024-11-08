@@ -19,7 +19,7 @@ const ActivitiesData = [
   {
     name: 'Math Quiz',
 
-    type: 'educational',
+    type: 'offline',
 
     // type code here for "relation_many" field
 
@@ -29,7 +29,7 @@ const ActivitiesData = [
   {
     name: 'Outdoor Play',
 
-    type: 'offline',
+    type: 'educational',
 
     // type code here for "relation_many" field
 
@@ -39,7 +39,17 @@ const ActivitiesData = [
   {
     name: 'Science Experiment',
 
-    type: 'social',
+    type: 'educational',
+
+    // type code here for "relation_many" field
+
+    // type code here for "relation_one" field
+  },
+
+  {
+    name: 'Drawing Session',
+
+    type: 'offline',
 
     // type code here for "relation_many" field
 
@@ -74,6 +84,16 @@ const ChatsData = [
     message: 'History review starts soon.',
 
     timestamp: new Date('2023-10-01T11:00:00Z'),
+
+    // type code here for "relation_one" field
+  },
+
+  {
+    // type code here for "relation_one" field
+
+    message: 'Art class is about to begin.',
+
+    timestamp: new Date('2023-10-01T13:00:00Z'),
 
     // type code here for "relation_one" field
   },
@@ -115,6 +135,18 @@ const DashboardsData = [
 
     // type code here for "relation_one" field
   },
+
+  {
+    // type code here for "relation_one" field
+
+    schedule: 'Art class at 1 PM',
+
+    mood_check_in: 'Creative',
+
+    goal_tracker: 'Draw 2 sketches',
+
+    // type code here for "relation_one" field
+  },
 ];
 
 const FamiliesData = [
@@ -136,6 +168,14 @@ const FamiliesData = [
 
   {
     name: 'Brown Family',
+
+    // type code here for "relation_many" field
+
+    // type code here for "relation_one" field
+  },
+
+  {
+    name: 'Johnson Family',
 
     // type code here for "relation_many" field
 
@@ -173,6 +213,16 @@ const NotificationsData = [
 
     // type code here for "relation_one" field
   },
+
+  {
+    // type code here for "relation_one" field
+
+    content: 'Reminder: Art class at 1 PM',
+
+    sent_at: new Date('2023-10-01T21:00:00Z'),
+
+    // type code here for "relation_one" field
+  },
 ];
 
 const ScreenTimeAnalysesData = [
@@ -205,19 +255,33 @@ const ScreenTimeAnalysesData = [
 
     // type code here for "relation_one" field
   },
+
+  {
+    // type code here for "relation_one" field
+
+    usage_hours: 4,
+
+    recommendations: 'Limit screen time to 3 hours',
+
+    // type code here for "relation_one" field
+  },
 ];
 
 const FamilyData = [
   {
-    name: 'George Gaylord Simpson',
+    name: 'Edward Teller',
   },
 
   {
-    name: 'Linus Pauling',
+    name: 'Karl Landsteiner',
   },
 
   {
-    name: 'Max von Laue',
+    name: 'Ernst Mayr',
+  },
+
+  {
+    name: 'Jonas Salk',
   },
 ];
 
@@ -256,6 +320,17 @@ async function associateUserWithFamily() {
   if (User2?.setFamily) {
     await User2.setFamily(relatedFamily2);
   }
+
+  const relatedFamily3 = await Family.findOne({
+    offset: Math.floor(Math.random() * (await Family.count())),
+  });
+  const User3 = await Users.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (User3?.setFamily) {
+    await User3.setFamily(relatedFamily3);
+  }
 }
 
 // Similar logic for "relation_many"
@@ -293,6 +368,17 @@ async function associateActivityWithFamily() {
   if (Activity2?.setFamily) {
     await Activity2.setFamily(relatedFamily2);
   }
+
+  const relatedFamily3 = await Family.findOne({
+    offset: Math.floor(Math.random() * (await Family.count())),
+  });
+  const Activity3 = await Activities.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Activity3?.setFamily) {
+    await Activity3.setFamily(relatedFamily3);
+  }
 }
 
 async function associateChatWithUser() {
@@ -327,6 +413,17 @@ async function associateChatWithUser() {
   });
   if (Chat2?.setUser) {
     await Chat2.setUser(relatedUser2);
+  }
+
+  const relatedUser3 = await Users.findOne({
+    offset: Math.floor(Math.random() * (await Users.count())),
+  });
+  const Chat3 = await Chats.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Chat3?.setUser) {
+    await Chat3.setUser(relatedUser3);
   }
 }
 
@@ -363,6 +460,17 @@ async function associateChatWithFamily() {
   if (Chat2?.setFamily) {
     await Chat2.setFamily(relatedFamily2);
   }
+
+  const relatedFamily3 = await Family.findOne({
+    offset: Math.floor(Math.random() * (await Family.count())),
+  });
+  const Chat3 = await Chats.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Chat3?.setFamily) {
+    await Chat3.setFamily(relatedFamily3);
+  }
 }
 
 async function associateDashboardWithUser() {
@@ -398,6 +506,17 @@ async function associateDashboardWithUser() {
   if (Dashboard2?.setUser) {
     await Dashboard2.setUser(relatedUser2);
   }
+
+  const relatedUser3 = await Users.findOne({
+    offset: Math.floor(Math.random() * (await Users.count())),
+  });
+  const Dashboard3 = await Dashboards.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Dashboard3?.setUser) {
+    await Dashboard3.setUser(relatedUser3);
+  }
 }
 
 async function associateDashboardWithFamily() {
@@ -432,6 +551,17 @@ async function associateDashboardWithFamily() {
   });
   if (Dashboard2?.setFamily) {
     await Dashboard2.setFamily(relatedFamily2);
+  }
+
+  const relatedFamily3 = await Family.findOne({
+    offset: Math.floor(Math.random() * (await Family.count())),
+  });
+  const Dashboard3 = await Dashboards.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Dashboard3?.setFamily) {
+    await Dashboard3.setFamily(relatedFamily3);
   }
 }
 
@@ -470,6 +600,17 @@ async function associateFamilyWithFamily() {
   if (Family2?.setFamily) {
     await Family2.setFamily(relatedFamily2);
   }
+
+  const relatedFamily3 = await Family.findOne({
+    offset: Math.floor(Math.random() * (await Family.count())),
+  });
+  const Family3 = await Families.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Family3?.setFamily) {
+    await Family3.setFamily(relatedFamily3);
+  }
 }
 
 async function associateNotificationWithUser() {
@@ -504,6 +645,17 @@ async function associateNotificationWithUser() {
   });
   if (Notification2?.setUser) {
     await Notification2.setUser(relatedUser2);
+  }
+
+  const relatedUser3 = await Users.findOne({
+    offset: Math.floor(Math.random() * (await Users.count())),
+  });
+  const Notification3 = await Notifications.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Notification3?.setUser) {
+    await Notification3.setUser(relatedUser3);
   }
 }
 
@@ -540,6 +692,17 @@ async function associateNotificationWithFamily() {
   if (Notification2?.setFamily) {
     await Notification2.setFamily(relatedFamily2);
   }
+
+  const relatedFamily3 = await Family.findOne({
+    offset: Math.floor(Math.random() * (await Family.count())),
+  });
+  const Notification3 = await Notifications.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Notification3?.setFamily) {
+    await Notification3.setFamily(relatedFamily3);
+  }
 }
 
 async function associateScreenTimeAnalysisWithUser() {
@@ -575,6 +738,17 @@ async function associateScreenTimeAnalysisWithUser() {
   if (ScreenTimeAnalysis2?.setUser) {
     await ScreenTimeAnalysis2.setUser(relatedUser2);
   }
+
+  const relatedUser3 = await Users.findOne({
+    offset: Math.floor(Math.random() * (await Users.count())),
+  });
+  const ScreenTimeAnalysis3 = await ScreenTimeAnalyses.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (ScreenTimeAnalysis3?.setUser) {
+    await ScreenTimeAnalysis3.setUser(relatedUser3);
+  }
 }
 
 async function associateScreenTimeAnalysisWithFamily() {
@@ -609,6 +783,17 @@ async function associateScreenTimeAnalysisWithFamily() {
   });
   if (ScreenTimeAnalysis2?.setFamily) {
     await ScreenTimeAnalysis2.setFamily(relatedFamily2);
+  }
+
+  const relatedFamily3 = await Family.findOne({
+    offset: Math.floor(Math.random() * (await Family.count())),
+  });
+  const ScreenTimeAnalysis3 = await ScreenTimeAnalyses.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (ScreenTimeAnalysis3?.setFamily) {
+    await ScreenTimeAnalysis3.setFamily(relatedFamily3);
   }
 }
 

@@ -172,7 +172,7 @@ export default function WebSite() {
         <FeaturesSection
           projectName={'BuddyTime'}
           image={['Child using BuddyTime app']}
-          withBg={0}
+          withBg={1}
           features={features_points}
           mainText={`Explore ${projectName} Features`}
           subTitle={`Discover how ${projectName} helps children balance screen time with learning and play, promoting a healthier lifestyle.`}
